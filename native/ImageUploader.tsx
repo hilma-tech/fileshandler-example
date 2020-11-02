@@ -26,17 +26,27 @@ const ImageUploader: React.FC = () => {
     };
 
     const send = async () => {
+        // const res = await filesUploader.fetch(url, {
+        //     method: "POST",
+        //     body: JSON.stringify({
+        //         imageId: id
+        //     })
+        // });
+
+        // const resJ: { success: boolean; image: string } = await res.json();
+        // console.log(resJ)
+
+        // const res = await filesUploader.post(url, JSON.stringify({ imageId: id }));
+
         const url = "http://10.11.54.217:8080/multiple";
-        const res = await filesUploader.fetch(url, {
+
+        const res = await filesUploader.request({
+            data: JSON.stringify({ imageId: id }),
             method: "POST",
-            body: JSON.stringify({
-                imageId: id
-            })
+            url
         });
 
-        const resJ: { success: boolean; image: string } = await res.json();
-        console.log(resJ)
-        setUploadedImage(`http://10.11.54.217:8080${resJ.image}`);
+        setUploadedImage(`http://10.11.54.217:8080${res.data.image}`);
 
     };
 
