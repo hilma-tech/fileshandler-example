@@ -14,15 +14,17 @@ const UpdateCat = () => {
     const [imageLink, setImageLink] = useState("");
 
     const send = async () => {
-        const res = await filesUploader.fetch(`/cat/update-cat/${params.id}`, {
-            method: "POST",
-            body: JSON.stringify({
-                name,
-                imageId
-            })
-        });
-
-        const data = await res.json();
+        // const res = await filesUploader.fetch(`/cat/update-cat/${params.id}`, {
+        //     method: "POST",
+        //     body: JSON.stringify({
+        //         name,
+        //         imageId
+        //     })
+        // });
+        const res = await filesUploader.post(`/cat/update-cat/${params.id}`, JSON.stringify({
+            name,
+            imageId
+        }))
         history.push("/cats")
     };
 
@@ -35,9 +37,9 @@ const UpdateCat = () => {
         })();
     }, []);
 
-    const handleImageChange = e => {
-        setImageId(e.target.value.id);
-        setImageLink(e.target.value.link);
+    const handleImageChange = value => {
+        setImageId(value.id);
+        setImageLink(value.link);
     };
 
     return (
