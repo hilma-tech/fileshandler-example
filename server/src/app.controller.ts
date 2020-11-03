@@ -2,20 +2,14 @@ import { Controller, Get, Post, Body, Res } from '@nestjs/common';
 import { AppService } from './app.service';
 import { RequestUser, RequestUserType, UseJwtAuth, UseLocalAuth, User, UserService, } from '@hilma/auth-nest';
 import { Response } from 'express';
-import { ImageService } from '@hilma/fileshandler-server';
 
 @Controller()
 export class AppController {
   constructor(
     private readonly appService: AppService,
     private readonly userService: UserService,
-    // private readonly imageService: ImageService
   ) { }
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
 
   @Post("/signUp")
   async signUp(@Body() body: { username: string, password: string }, @Res() res: Response): Promise<void> {

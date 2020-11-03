@@ -21,11 +21,14 @@ const UpdateCat = () => {
         //         imageId
         //     })
         // });
-        const res = await filesUploader.post(`/cat/update-cat/${params.id}`, JSON.stringify({
-            name,
-            imageId
-        }))
-        history.push("/cats")
+        try {
+
+            const res = await filesUploader.post(`/cat/update-cat/${params.id}`, JSON.stringify({
+                name,
+                imageId
+            }))
+            history.push("/cats")
+        } catch (err) { }
     };
 
     useEffect(() => {

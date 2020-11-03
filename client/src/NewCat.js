@@ -13,20 +13,14 @@ const NewCat = () => {
     const [imageLink, setImageLink] = useState("");
 
     const send = async () => {
-        // const res = await filesUploader.fetch("/cat/new-cat", {
-        //     method: "POST",
-        //     body: JSON.stringify({
-        //         name,
-        //         imageId
-        //     })
-        // });
-
-        // const data = await res.json();
-        const res = await filesUploader.post("/cat/new-cat", JSON.stringify({name, imageId}))
-        history.push("/cats")
+        try {
+            const res = await filesUploader.post("/cat/new-cat", JSON.stringify({ name, imageId }))
+            history.push("/cats")
+        } catch (err) { }
     };
 
     const handleImageChange = value => {
+        console.log(value)
         setImageId(value.id);
         setImageLink(value.link);
     };
