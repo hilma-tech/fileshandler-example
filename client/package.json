@@ -4,7 +4,9 @@
   "private": true,
   "proxy": "http://127.0.0.1:8080",
   "dependencies": {
+    "@hilma/auth": "^0.2.36",
     "@hilma/fileshandler-client": "0.0.7",
+    "@hilma/tools": "^0.1.15",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",

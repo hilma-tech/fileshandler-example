@@ -24,17 +24,13 @@ export default (): AuthConfig => ({
     app_name_he: "איך קוראים לפרויקט בעברית?",
 
     roleAccess: {
-        CUSTOMER: {
+        simple: {
             components: [
-                "CustomerHome"
+                "cats",
+                "new-cat",
+                "update-cat"
             ],
-            defaultHomePage: "CustomerHome"
-        },
-        ADMIN: {
-            components: [
-                "AdminHome"
-            ],
-            defaultHomePage: "AdminHome"
+            defaultHomePage: "cats"
         }
     }
 });

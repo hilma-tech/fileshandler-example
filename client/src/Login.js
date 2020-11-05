@@ -1,27 +1,16 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useLogin } from '@hilma/auth';
 
 const Login = () => {
     const history = useHistory();
+    const authLogin = useLogin();
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const login = async () => {
-        const res = await fetch("/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({
-                username,
-                password
-            })
-        });
-
-        const data = await res.json();
-        console.log(data)
+        await authLogin("/login", { username, password });
         history.push("/cats");
     };
 
@@ -47,7 +36,7 @@ const Login = () => {
                 Login
             </button>
             <div>
-                <Link to="/signup" >
+                <Link to="/sign-up" >
                     sign up
                 </Link>
             </div>

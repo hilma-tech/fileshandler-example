@@ -17,7 +17,7 @@ export class AppController {
     const userForDB = new User();
     userForDB.username = body.username;
     userForDB.password = body.password;
-    userForDB.roles = [{ id: 1, name: "SIMPLE_USER", description: "admin", roleKey: "aa"}];
+    userForDB.roles = [{ id: 1, name: "simple", description: "simple", roleKey: "aa"}];
     const user = await this.userService.createUser(userForDB);
     console.log(user);
     const requestUser: RequestUserType = {

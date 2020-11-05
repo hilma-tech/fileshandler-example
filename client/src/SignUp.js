@@ -1,28 +1,17 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useAuth, useLogin } from '@hilma/auth';
 
 const SignUp = () => {
     const history = useHistory();
+    const login = useLogin();
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const signUp = async () => {
-        const res = await fetch("/signUp", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({
-                username,
-                password
-            })
-        });
-
-        const data = await res.json();
+        await login("/signUp", {username, password});
         history.push("/cats");
-
     };
 
     return (

@@ -1,9 +1,12 @@
+import { useAuth } from '@hilma/auth';
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect, Switch, Route, useHistory } from 'react-router-dom';
 
 const Cats = () => {
     const history = useHistory();
     const [cats, setCats] = useState([]);
+
+    const auth = useAuth();
 
     useEffect(() => {
         (async () => {
@@ -14,9 +17,7 @@ const Cats = () => {
     }, []);
 
     const logout = () => {
-        document.cookie.split(";").forEach(c => {
-            document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-        });
+        auth.logout();
         history.go("/login");
     };
 
