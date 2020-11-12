@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { FilesType, ImageService } from "@hilma/fileshandler-server";
+import { FilesType, ImageTypeormService } from "@hilma/fileshandler-typeorm";
 import { CreateCatDto } from './CreateCat.dto';
 import { RequestUserType } from '@hilma/auth-nest';
 import { Repository } from 'typeorm';
@@ -10,7 +10,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class CatService {
     constructor(
         @InjectRepository(Cat) private readonly catRepository: Repository<Cat>,
-        private readonly imageService: ImageService
+        private readonly imageService: ImageTypeormService
     ) { }
 
     async newCat(cat: CreateCatDto, files: FilesType, user: RequestUserType): Promise<void> {
