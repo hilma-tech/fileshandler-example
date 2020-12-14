@@ -25,6 +25,10 @@ const NewCat = () => {
         setImageLink(value.link);
     };
 
+    const handleUploadError = err => {
+        alert(`היית אמור להעלות תמונה אבל במקום זה העלאת קובץ מסוג ${err.mimeType}, לא יפה`);
+    }
+
     return (
         <div className="new-cat">
             <div style={{ fontSize: "40px", margin: "20px" }}>
@@ -42,7 +46,7 @@ const NewCat = () => {
                     choose image
                 </label>
                 <br />
-                <FileInput type="image" filesUploader={filesUploader} onChange={handleImageChange} id="image-input" />
+                <FileInput type="image" filesUploader={filesUploader} onChange={handleImageChange} onError={handleUploadError} id="image-input" />
             </div>
             {
                 imageLink &&
