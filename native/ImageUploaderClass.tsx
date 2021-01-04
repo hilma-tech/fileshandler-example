@@ -2,11 +2,9 @@ import React, { Component, useState } from 'react';
 import { Button, View, StyleSheet, Image, Text } from 'react-native';
 import * as DocumentPicker from 'expo-document-picker';
 
-import { FilesUploader, useFiles, withFiles } from '@hilma/fileshandler-native';
+import { FilesUploader, useFiles, withFiles, WithFilesProps } from '@hilma/fileshandler-native';
 
-export interface ImageUploaderClassProps {
-    filesUploader: FilesUploader;
-}
+
 
 export interface ImageUploaderClassState {
     image: string;
@@ -14,8 +12,8 @@ export interface ImageUploaderClassState {
     id: number | undefined;
 }
 
-class ImageUploaderClass extends React.Component<ImageUploaderClassProps, ImageUploaderClassState> {
-    constructor(props: ImageUploaderClassProps) {
+class ImageUploaderClass extends React.Component<WithFilesProps, ImageUploaderClassState> {
+    constructor(props: WithFilesProps) {
         super(props);
         this.state = {
             image: "",
