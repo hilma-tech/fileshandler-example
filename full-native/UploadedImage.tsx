@@ -12,8 +12,7 @@ const UploadedImage: React.FC<ImageProps> = props => {
         // console.log(imagePath + apiUrl)
         setUri(apiUrl + imagePath);
     }, [imagePath]);
-    console.log("here")
-    console.log(uri)
+
     return (
         uri
             ?
