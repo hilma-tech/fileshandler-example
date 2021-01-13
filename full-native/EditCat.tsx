@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CatUploader from './CatUploader';
 
 
-const NewCat: React.FC = () => {
+const EditCat: React.FC = () => {
     const [image, setImage] = useState("");
 
     const [name, setName] = useState("");
@@ -13,7 +13,7 @@ const NewCat: React.FC = () => {
 
     return (
         <CatUploader
-            title="New Cat"
+            title="Edit Cat"
             img={image}
             name={name}
             onImageChange={setImage}
@@ -23,5 +23,5 @@ const NewCat: React.FC = () => {
     );
 }
 
-export default NewCat;
+export default EditCat;
 

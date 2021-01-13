@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import UserUploader from './UserUploader';
 
-const Login: React.FC = () => {
+const Register: React.FC = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -15,16 +15,16 @@ const Login: React.FC = () => {
 
     return (
         <UserUploader
-            title="login"
+            title="Register"
             username={username}
             password={password}
             onUsernameChange={setUsername}
             onPasswordChange={setPassword}
             onSend={handleSend}
-            redirectName="Register"
+            redirectName="Login"
             onRedirect={handleRedirect}
         />
     );
 }
 
-export default Login;
+export default Register;
