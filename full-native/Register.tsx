@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import UserUploader from './UserUploader';
 
-const Register: React.FC = () => {
+import { StackNavigationProp } from '@react-navigation/stack';
+
+
+const Register: React.FC<{ navigation: StackNavigationProp<any> }> = ({ navigation }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -10,7 +13,7 @@ const Register: React.FC = () => {
     }
 
     const handleRedirect = () => {
-
+        navigation.navigate("Login");
     }
 
     return (

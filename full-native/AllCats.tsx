@@ -1,38 +1,55 @@
-import React, { useState } from 'react';
-import { Alert, Button, Image, StyleSheet, Text, TextInput, View,ScrollView } from 'react-native';
+import { useLogout } from '@hilma/auth-native';
+import React, { useEffect, useState } from 'react';
+import { Button, Image, StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import Axios from 'axios';
+
 import { winHeight, winWidth } from './styles';
+import UploadedImage from './UploadedImage';
+import { useNavigation } from '@react-navigation/native';
 
 const AllCats: React.FC = () => {
-    const myCats: { name: string, imgSrc: string }[] = [
-        {
-            name: "pitzki",
-            imgSrc: "https://static.toiimg.com/photo/msid-67586673/67586673.jpg?3918697"
-        },
-        {
-            name: "dana",
-            imgSrc: "https://www.loveyourdog.com/wp-content/uploads/2019/04/Toy-Poodle.jpg"
-        },
-        {
-            name: "mooki",
-            imgSrc: "https://icatcare.org/app/uploads/2018/06/Layer-1704-1920x840.jpg"
-        },
-        {
-            name: "mooki",
-            imgSrc: "https://icatcare.org/app/uploads/2018/06/Layer-1704-1920x840.jpg"
-        }
-    ];
+    const logout = useLogout();
+    const navigation = useNavigation();
+
+    const handleLogout = async () => {
+        await logout();
+    }
+
+    const [cats, setCats] = useState<{
+        id: number,
+        imagePath: string,
+        name: string
+    }[]>([]);
+
+
+    useEffect(() => {
+        (async () => {
+            const res = await Axios.get("/cat/all-cats");
+            setCats(res.data);
+        })();
+    }, []);
+
+    const handleNewCat = () => {
+        navigation.navigate("")
+    }
+    
 
     return (
         <View style={styles.container}>
+            <TouchableOpacity onPress={handleLogout}>
+                <Text>
+                    logout
+                </Text>
+            </TouchableOpacity>
             <Text style={styles.title}>
                 all my cats
             </Text>
 
-            <ScrollView  contentContainerStyle={styles.catsContainer}>
+            <ScrollView contentContainerStyle={styles.catsContainer}>
                 {
-                    myCats.map((cat, index) => (
+                    cats.map((cat, index) => (
                         <View key={index} style={styles.catContainer}>
-                            <Image source={{ uri: cat.imgSrc }} style={styles.image} />
+                            <UploadedImage source={{ uri: cat.imagePath }} style={styles.image} />
                             <Text>
                                 {cat.name}
                             </Text>
@@ -40,7 +57,7 @@ const AllCats: React.FC = () => {
                     ))
                 }
             </ScrollView>
-            <Button title="new cat" onPress={() =>null} />
+            <Button title="new cat" onPress={() => null} />
         </View>
     );
 }

@@ -31,8 +31,7 @@ import { Cat } from './cat/cat.entity';
     FilesHandlerTypeormModule.register({
       folder: "/home/michael/filesHandlerUploads/full-project",
       imageSizes: { s: 500, m: 1000 },
-      // autoAllow: true
-      // defaultAllow: true
+      defaultAllow: true
     }),
     ConfigModule.forRoot({ load: [configuration], isGlobal: true }),
     CatModule,
