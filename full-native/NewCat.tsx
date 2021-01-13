@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
 import CatUploader from './CatUploader';
-
+import { useFiles } from '@hilma/fileshandler-native';
+import { useNavigation } from '@react-navigation/native';
 
 const NewCat: React.FC = () => {
-    const [image, setImage] = useState("");
+    const navigation = useNavigation();
 
+    const [image, setImage] = useState("");
     const [name, setName] = useState("");
 
-    const handleSend = () => {
+    const filesUploader = useFiles();
 
+    const handleSend = async () => {
+        try {
+            filesUploader.deleteAll();
+            const imageId = filesUploader.addFile(image);
+            const res = await filesUploader.post("/cat/new-cat", JSON.stringify({ name, imageId }));
+            navigation.navigate("cats");
+        } catch (err) { }
     }
 
     return (
@@ -19,6 +28,7 @@ const NewCat: React.FC = () => {
             onImageChange={setImage}
             onNameChange={setName}
             onSend={handleSend}
+            useUploadedImage={false}
         />
     );
 }

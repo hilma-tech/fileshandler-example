@@ -30,9 +30,13 @@ const AllCats: React.FC = () => {
     }, []);
 
     const handleNewCat = () => {
-        navigation.navigate("")
+        navigation.navigate("new-cat");
     }
-    
+
+    const handleEdit = (catId: number) => {
+        navigation.navigate("update-cat", { catId });
+    }
+
 
     return (
         <View style={styles.container}>
@@ -49,15 +53,17 @@ const AllCats: React.FC = () => {
                 {
                     cats.map((cat, index) => (
                         <View key={index} style={styles.catContainer}>
-                            <UploadedImage source={{ uri: cat.imagePath }} style={styles.image} />
-                            <Text>
-                                {cat.name}
-                            </Text>
+                            <TouchableOpacity onPress={e => handleEdit(cat.id)}>
+                                <UploadedImage source={{ uri: cat.imagePath }} style={styles.image} />
+                                <Text>
+                                    {cat.name}
+                                </Text>
+                            </TouchableOpacity>
                         </View>
                     ))
                 }
             </ScrollView>
-            <Button title="new cat" onPress={() => null} />
+            <Button title="new cat" onPress={handleNewCat} />
         </View>
     );
 }

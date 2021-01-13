@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Platform, Button, StyleSheet, Text, TextInput, View, Image, } from 'react-native';
 import { winHeight, winWidth } from './styles';
 import * as ImagePicker from 'expo-image-picker';
+import UploadedImage from './UploadedImage';
 
 interface CatUploaderProps {
     title: string;
@@ -10,10 +11,10 @@ interface CatUploaderProps {
     name: string;
     onNameChange: (name: string) => void;
     onSend: () => void;
+    useUploadedImage: boolean;
 }
 
-const CatUploader: React.FC<CatUploaderProps> = ({ title, name, onNameChange, img, onImageChange, onSend }) => {
-    // const [image, setImage] = useState("");
+const CatUploader: React.FC<CatUploaderProps> = ({ title, name, onNameChange, img, onImageChange, onSend, useUploadedImage }) => {
 
     const pickImage = async () => {
         if (Platform.OS !== 'web') {
@@ -31,15 +32,14 @@ const CatUploader: React.FC<CatUploaderProps> = ({ title, name, onNameChange, im
             quality: 1,
         });
 
-        console.log(result);
 
         if (!result.cancelled) {
             onImageChange(result.uri);
         }
     };
 
-    // const [name, setName] = useState("");
-
+    console.log(useUploadedImage)
+    console.log(img)
     return (
         <View style={styles.container}>
             <Text style={styles.title}>
@@ -54,7 +54,13 @@ const CatUploader: React.FC<CatUploaderProps> = ({ title, name, onNameChange, im
                 {
                     img
                         ?
-                        <Image source={{ uri: img }} style={styles.image} />
+                        (
+                            useUploadedImage
+                                ?
+                                <UploadedImage source={{ uri: img }} style={styles.image} />
+                                :
+                                <Image source={{ uri: img }} style={styles.image} />
+                        )
                         :
                         null
                 }
