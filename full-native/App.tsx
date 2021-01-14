@@ -22,9 +22,9 @@ const App = () => {
 
   return (
     <RootStack.Navigator screenOptions={{ headerShown: false }} initialRouteName={isAuthenticated ? "cats" : "Login"}>
-      <RootStack.PrivateScreen name="cats" componentName="cats" component={AllCats} />
       <RootStack.PublicOnlyScreen name="Login" componentName="login" component={Login} redirectName="cats" />
       <RootStack.PublicOnlyScreen name="sign-up" componentName="sign-up" component={Register} redirectName="cats" />
+      <RootStack.PrivateScreen name="cats" componentName="cats" component={AllCats} />
       <RootStack.PrivateScreen name="new-cat" componentName="new-cat" component={NewCat} />
       <RootStack.PrivateScreen name="update-cat" componentName="update-cat" component={EditCat} />
     </RootStack.Navigator>
