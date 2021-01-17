@@ -1,19 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import AllCats from './AllCats';
-import Login from './Login';
-import CatUploader from './CatUploader';
-import NewCat from './NewCat';
-import EditCat from './EditCat';
-import Register from './Register';
-
-
-
 import { NavigationContainer } from '@react-navigation/native';
+
 import { AuthProvider, createPrivateNavigator, useIsAuthenticated } from '@hilma/auth-native';
 import { provide } from '@hilma/tools';
 
+import AllCats from './AllCats';
+import Login from './Login';
+import NewCat from './NewCat';
+import EditCat from './EditCat';
+import Register from './Register';
 
 const RootStack = createPrivateNavigator();
 
