@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Platform, Button, StyleSheet, Text, TextInput, View, Image, } from 'react-native';
-import { winHeight, winWidth } from './styles';
 import * as ImagePicker from 'expo-image-picker';
-import UploadedImage from './UploadedImage';
+// import UploadedImage from './UploadedImage';
+import { UploadedImage } from '@hilma/fileshandler-native';
+
+import { winHeight, winWidth } from './styles';
 
 interface CatUploaderProps {
     title: string;

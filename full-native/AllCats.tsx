@@ -1,11 +1,14 @@
-import { useLogout } from '@hilma/auth-native';
 import React, { useEffect, useState } from 'react';
 import { Button, StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import Axios from 'axios';
 
-import { winHeight, winWidth } from './styles';
-import UploadedImage from './UploadedImage';
 import { useNavigation } from '@react-navigation/native';
+
+import { useLogout } from '@hilma/auth-native';
+import { UploadedImage } from "@hilma/fileshandler-native";
+
+import { winHeight, winWidth } from './styles';
+// import UploadedImage from './UploadedImage';
 
 const AllCats: React.FC = () => {
     const logout = useLogout();
