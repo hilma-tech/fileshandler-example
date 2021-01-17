@@ -13,7 +13,7 @@ const ENV = {
 		apiUrl: `http://${localIP}:8080`
 	},
 	production: {
-		apiUrl: ""
+		apiUrl: "http://10.0.0.16:8080"
 	}
 };
 
