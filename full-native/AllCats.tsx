@@ -1,6 +1,6 @@
 import { useLogout } from '@hilma/auth-native';
 import React, { useEffect, useState } from 'react';
-import { Button, Image, StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { Button, StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import Axios from 'axios';
 
 import { winHeight, winWidth } from './styles';
@@ -22,11 +22,19 @@ const AllCats: React.FC = () => {
     }[]>([]);
 
 
+
+    const getCats = async () => {
+        const res = await Axios.get("/cat/all-cats");
+        setCats(res.data);
+    }
+
     useEffect(() => {
-        (async () => {
-            const res = await Axios.get("/cat/all-cats");
-            setCats(res.data);
-        })();
+        getCats();
+        navigation.addListener("focus", getCats);
+
+        return () => {
+            navigation.removeListener("focus", getCats);
+        };
     }, []);
 
     const handleNewCat = () => {
