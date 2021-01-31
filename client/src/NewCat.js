@@ -14,7 +14,7 @@ const NewCat = () => {
 
     const send = async () => {
         try {
-            const res = await filesUploader.post("/cat/new-cat", JSON.stringify({ name, imageId }))
+            const res = await filesUploader.post("/cat/new-cat", { name, imageId });
             history.push("/cats")
         } catch (err) { }
     };
