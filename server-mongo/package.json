@@ -21,8 +21,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@hilma/auth-mongo-nest": "^0.1.9",
-    "@hilma/fileshandler-mongoose": "^0.1.2",
+    "@hilma/auth-mongo-nest": "^0.1.17",
+    "@hilma/fileshandler-mongoose": "^0.1.4",
     "@nestjs/common": "^7.0.0",
     "@nestjs/core": "^7.0.0",
     "@nestjs/mongoose": "^7.1.0",
