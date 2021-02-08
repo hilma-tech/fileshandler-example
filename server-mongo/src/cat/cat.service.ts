@@ -16,17 +16,17 @@ export class CatService {
 
     async newCat(cat: CreateCatDto, files: FilesType, user: RequestUserType): Promise<void> {
 
-        const imagePath = await this.imageMongooseService.saveWithUsersPermission(files, cat.imageId, [Types.ObjectId(user.id)]);
+        const imagePath = await this.imageMongooseService.saveWithUsersPermission(files, cat.imageId, [Types.ObjectId(user._id)]);
 
         const newCat = new this.catModel;
         newCat.imagePath = imagePath;
         newCat.name = cat.name;
-        newCat.userId = Types.ObjectId(user.id);
+        newCat.userId = Types.ObjectId(user._id);
         newCat.save();
     }
 
     async allCats(user: RequestUserType): Promise<CatDocument[]> {
-        const cats = await this.catModel.find({ userId: Types.ObjectId(user.id) }).exec();
+        const cats = await this.catModel.find({ userId: Types.ObjectId(user._id) }).exec();
         cats.forEach(cat => cat.id = cat._id);
         return cats;
     }
@@ -40,7 +40,7 @@ export class CatService {
 
         if (typeof cat.imageId === "number") {
             const previous = catInDB.imagePath;
-            catInDB.imagePath = await this.imageMongooseService.saveInSizeWithUsersPermission(files, cat.imageId, 500, [Types.ObjectId(user.id)]);
+            catInDB.imagePath = await this.imageMongooseService.saveInSizeWithUsersPermission(files, cat.imageId, 500, [Types.ObjectId(user._id)]);
             await this.imageMongooseService.deleteWithPermission(previous);
         }
 

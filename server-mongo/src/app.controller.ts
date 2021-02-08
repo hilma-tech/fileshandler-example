@@ -27,7 +27,7 @@ export class AppController {
     const user = await this.userService.createUser(userForDB);
 
     const requestUser: RequestUserType = {
-      id: user.id,
+      _id: user.id,
       username: body.username,
       type: 'User',
       roles: userForDB.roles.map(role => role.name),
