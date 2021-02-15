@@ -45,6 +45,14 @@ const UpdateCat = () => {
         setImageLink(value.link);
     };
 
+    const handleUploadError = err => {
+        if (err.type === "wrong-type") {
+            alert(`היית אמור להעלות תמונה אבל במקום זה העלאת קובץ מסוג ${err.mimeType}, לא יפה`);
+        } else {
+            alert("קובץ גדול מדי");
+        }
+    }
+
     return (
         <div className="new-cat">
             <div style={{ fontSize: "40px", margin: "20px" }}>
@@ -62,7 +70,7 @@ const UpdateCat = () => {
                     choose image
                 </label>
                 <br />
-                <FileInput type="image" filesUploader={filesUploader} onChange={handleImageChange} id="image-input" />
+                <FileInput type="image" sizeLimit={200} filesUploader={filesUploader} onChange={handleImageChange} onError={handleUploadError} id="image-input" />
             </div>
             {
                 imageLink &&

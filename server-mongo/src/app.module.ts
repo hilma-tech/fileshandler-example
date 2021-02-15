@@ -15,8 +15,9 @@ import { UserModule } from '@hilma/auth-mongo-nest';
     FilesHandlerMongooseModule.register({
       folder: "/home/michael/filesHandlerUploads/full-project",
       imageSizes: { s: 500, m: 1000 },
-      // autoAllow: true
-      // defaultAllow: true
+      sizes: {
+        image: 200
+      }
     }),
     ConfigModule.forRoot({ load: [configuration], isGlobal: true }),
     CatModule,
