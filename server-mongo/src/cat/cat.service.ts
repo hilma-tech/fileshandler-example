@@ -50,7 +50,7 @@ export class CatService {
     }
 
     async deleteCat(catId: number): Promise<void> {
-        const cat = await this.catModel.findOne({ where: { id: catId } });
+        const cat = await this.catModel.findOne({ _id: catId });
         await cat.deleteOne();
         await this.imageMongooseService.deleteWithPermission(cat.imagePath);
     }
