@@ -15,6 +15,7 @@ export class CatController {
     @UseJwtAuth()
     @UseFilesHandler()
     async newCat(@Body() cat: CreateCatDto, @UploadedFiles() files: FilesType, @RequestUser() user: RequestUserType) {
+        console.log("upload")
         console.log(files)
         await this.catService.newCat(cat, files, user);
         return { success: true };

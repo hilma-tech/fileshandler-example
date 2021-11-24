@@ -17,7 +17,7 @@ const NewCat: React.FC = () => {
             const imageId = filesUploader.addFile(image);
             const res = await filesUploader.post("/cat/new-cat", JSON.stringify({ name, imageId }));
             navigation.navigate("cats");
-        } catch (err) { }
+        } catch (err) {console.log(err) }
     }
 
     return (

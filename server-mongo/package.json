@@ -22,11 +22,12 @@
   },
   "dependencies": {
     "@hilma/auth-mongo-nest": "^1.0.1",
-    "@hilma/fileshandler-mongoose": "^0.1.20",
+    "@hilma/fileshandler-mongoose": "^0.2.0",
     "@nestjs/common": "^8.2.0",
     "@nestjs/core": "^8.2.0",
     "@nestjs/mongoose": "^7.0.2",
     "@nestjs/platform-express": "^8.2.0",
+    "aws-sdk": "^2.1035.0",
     "cookie-parser": "^1.4.5",
     "mongoose": "^5.13.11",
     "reflect-metadata": "^0.1.13",
