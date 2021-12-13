@@ -13,7 +13,8 @@ import { UserModule } from '@hilma/auth-mongo-nest';
   imports: [
     MongooseModule.forRoot("mongodb://root:z10mz10m@localhost/fileshandlerFullProject"),
     FilesHandlerMongooseModule.register({
-      folder: "/home/michael/filesHandlerUploads/full-project",
+      // folder: "/home/michael/filesHandlerUploads/full-project",
+      bucketName: "1q2w3e",
       imageSizes: { s: 500, m: 1000 },
       sizes: {
         image: 200
