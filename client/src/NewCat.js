@@ -50,7 +50,14 @@ const NewCat = () => {
                     choose image
                 </label>
                 <br />
-                <FileInput singleUpload={false} type="image" sizeLimit={200} filesUploader={filesUploader} onChange={handleImageChange} onError={handleUploadError} id="image-input" />
+                <FileInput
+                    type="image"
+                    filesUploader={filesUploader}
+                    onChange={handleImageChange}
+                    onError={handleUploadError}
+                    sizeLimit={200}
+                    id="image-input"
+                />
             </div>
             {
                 imageLink &&
